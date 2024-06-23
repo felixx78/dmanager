@@ -88,6 +88,7 @@ const LanguageMenuItem = ({
   onClick?: () => void;
 }) => (
   <MenuItem
+    as={onClick ? "button" : "div"}
     value="en"
     bg="_"
     _hover={{ bg: "gray.600" }}
