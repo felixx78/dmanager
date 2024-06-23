@@ -1,0 +1,31 @@
+(From ChatGPT)
+
+Primary Colors
+These are the main colors you'll use for primary actions and highlights.
+
+Primary: #1A202C (Gray 900)
+Secondary: #2D3748 (Gray 800)
+Accent: #4A5568 (Gray 700)
+Background and Surfaces
+These colors are used for backgrounds, surfaces, and elements such as cards and modals.
+
+Background: #121212 (Black)
+Surface: #1A202C (Gray 900)
+Card: #2D3748 (Gray 800)
+Text Colors
+Colors for text to ensure good readability on dark backgrounds.
+
+Primary Text: #E2E8F0 (Gray 200)
+Secondary Text: #A0AEC0 (Gray 400)
+Disabled Text: #718096 (Gray 600)
+Success, Warning, and Error Colors
+Colors to indicate different statuses such as success, warning, and error.
+
+Success: #48BB78 (Green 500)
+Warning: #ECC94B (Yellow 500)
+Error: #F56565 (Red 500)
+Borders and Lines
+Colors for borders and dividers to maintain separation between elements.
+
+Border: #4A5568 (Gray 700)
+Divider: #2D3748 (Gray 800)
