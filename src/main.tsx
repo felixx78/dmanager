@@ -4,7 +4,9 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router.tsx";
 import "./index.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { Provider as ReduxProvider } from "react-redux";
 import "@fontsource-variable/inter";
+import store from "./redux/store.ts";
 
 const theme = extendTheme({
   fonts: {
@@ -16,7 +18,9 @@ const theme = extendTheme({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
-      <RouterProvider router={router} />
+      <ReduxProvider store={store}>
+        <RouterProvider router={router} />
+      </ReduxProvider>
     </ChakraProvider>
   </React.StrictMode>
 );

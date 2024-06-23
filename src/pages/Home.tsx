@@ -1,5 +1,14 @@
+import { Container } from "@chakra-ui/react";
+import { useIntl } from "react-intl";
+
 function Home() {
-  return <div>Home</div>;
+  const intl = useIntl();
+
+  return (
+    <Container maxW="8xl" centerContent>
+      {intl.formatMessage({ id: "homeTitle" })}
+    </Container>
+  );
 }
 
 export default Home;
