@@ -4,6 +4,7 @@ import { RouterProvider } from "react-router-dom";
 import router from "./router.tsx";
 import "./index.css";
 import { ChakraProvider } from "@chakra-ui/react";
+import "@fontsource-variable/inter";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
