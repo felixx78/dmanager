@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
 import messages_en from "../locales/en.json";
 import messages_ru from "../locales/ru.json";
+import messages_se from "../locales/se.json";
 import { IntlProvider } from "react-intl";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
@@ -11,6 +12,7 @@ import Messages from "../locales/type";
 const messages: Messages = {
   en: messages_en,
   ru: messages_ru,
+  se: messages_se,
 };
 
 function RootLayout() {

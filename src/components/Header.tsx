@@ -11,6 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import USAFlag from "../assets/flags/usa.svg";
 import RussianFlag from "../assets/flags/russian.png";
+import SwedishFlag from "../assets/flags/sweden.png";
 import { useDispatch, useSelector } from "react-redux";
 import { languageActions } from "../redux/languageReducer";
 import { RootState } from "../redux/store";
@@ -20,6 +21,11 @@ const languages = [
     code: "en",
     label: "English",
     flag: USAFlag,
+  },
+  {
+    code: "se",
+    label: "Svenska",
+    flag: SwedishFlag,
   },
   {
     code: "ru",
@@ -58,16 +64,14 @@ function Header() {
           <LanguageMenuItem image={language.flag} label={language.label} />
         </MenuButton>
         <MenuList borderColor="gray.600" bg="gray.700">
-          <LanguageMenuItem
-            image={USAFlag}
-            label="English"
-            onClick={() => handleChangeLanguage("en")}
-          />
-          <LanguageMenuItem
-            image={RussianFlag}
-            label="Russian"
-            onClick={() => handleChangeLanguage("ru")}
-          />
+          {languages.map((i) => (
+            <LanguageMenuItem
+              key={i.code}
+              image={i.flag}
+              label={i.label}
+              onClick={() => handleChangeLanguage(i.code)}
+            />
+          ))}
         </MenuList>
       </Menu>
     </Flex>
