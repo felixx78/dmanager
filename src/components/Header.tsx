@@ -85,7 +85,7 @@ const LanguageMenuItem = ({
 }) => (
   <MenuItem
     value="en"
-    bg="gray.700"
+    bg="_"
     _hover={{ bg: "gray.600" }}
     gap="10px"
     onClick={onClick}
