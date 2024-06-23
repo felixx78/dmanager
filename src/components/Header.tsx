@@ -60,7 +60,7 @@ function Header() {
       </Flex>
 
       <Menu>
-        <MenuButton colorScheme="_" as={Button}>
+        <MenuButton fontWeight={400} colorScheme="_" as={Button}>
           <LanguageMenuItem image={language.flag} label={language.label} />
         </MenuButton>
         <MenuList borderColor="gray.600" bg="gray.700">
