@@ -23,11 +23,6 @@ const languages = [
     flag: USAFlag,
   },
   {
-    code: "se",
-    label: "Svenska",
-    flag: SwedishFlag,
-  },
-  {
     code: "ru",
     label: "Русский",
     flag: RussianFlag,
