@@ -29,7 +29,7 @@ const languages = [
   },
   {
     code: "ru",
-    label: "Russian",
+    label: "Русский",
     flag: RussianFlag,
   },
 ];
