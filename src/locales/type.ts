@@ -1,6 +1,12 @@
 type Messages = {
   [key: string]: {
-    homeTitle: string;
+    amount: string;
+    calculate: string;
+    "rent&utils": string;
+    food: string;
+    entertainment: string;
+    total: string;
+    remains: string;
   };
 };
 

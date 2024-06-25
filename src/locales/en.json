@@ -1,3 +1,11 @@
 {
-  "homeTitle": "Main page"
+  "amount": "Amount",
+  "calculate": "Calculate",
+  "rent&utils": "Rent & Utils",
+  "food": "Food",
+  "entertainment": "Entertainment",
+  "label": "Label",
+  "saving": "Saving",
+  "total": "Total",
+  "remains": "Remains"
 }
