@@ -1,7 +1,7 @@
 import { Box, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useIntl } from "react-intl";
-import ExpensesType from "../types/expenses";
+import Expense from "../types/expense";
 
 type Props = {
   icon: React.ReactNode;
@@ -9,7 +9,7 @@ type Props = {
   bgColor: string;
   amount: number;
   id: string;
-  setExpenses: React.Dispatch<React.SetStateAction<ExpensesType[]>>;
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
 };
 
 type Field = {
@@ -37,7 +37,7 @@ function Expenses({ icon, label, bgColor, amount, id, setExpenses }: Props) {
       const filteredCopy = fieldCopy.filter((i) => i.label || i.amount);
       filteredCopy.push({ label: "", amount: null });
 
-      setExpenses((prev: ExpensesType[]) => {
+      setExpenses((prev: Expense[]) => {
         const copy = [...prev];
         const index = copy.findIndex((i) => i.id === id);
         copy[index].total = filteredCopy.reduce(

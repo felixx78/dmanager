@@ -1,4 +1,4 @@
-type Expenses = {
+type Expense = {
   icon: React.ReactNode;
   label: string;
   bgColor: string;
@@ -6,4 +6,4 @@ type Expenses = {
   total: number;
 };
 
-export default Expenses;
+export default Expense;
