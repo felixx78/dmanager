@@ -6,7 +6,6 @@ import {
   PopoverTrigger,
   SimpleGrid,
   Text,
-  Tooltip,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import * as Icons from "@chakra-ui/icons";
@@ -45,11 +44,9 @@ function IconSelect({ icon, setIcon }: Props) {
   return (
     <Popover isOpen={isOpen} onClose={() => setIsOpen(false)}>
       <PopoverTrigger>
-        <Tooltip label="Choose Icon">
-          <Button color="gray.600" onClick={() => setIsOpen(!isOpen)}>
-            {icon && icons[icon].render({ w: "20px", h: "20px" })}
-          </Button>
-        </Tooltip>
+        <Button color="gray.600" onClick={() => setIsOpen(!isOpen)}>
+          {icon && icons[icon].render({ w: "20px", h: "20px" })}
+        </Button>
       </PopoverTrigger>
 
       <PopoverContent maxH="300px" overflowY="auto">
