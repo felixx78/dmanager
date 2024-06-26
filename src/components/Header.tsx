@@ -9,9 +9,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import USAFlag from "../assets/flags/usa.svg";
+import UKFlag from "../assets/flags/uk.svg";
 import RussianFlag from "../assets/flags/russian.png";
-import SwedishFlag from "../assets/flags/sweden.png";
 import { useDispatch, useSelector } from "react-redux";
 import { languageActions } from "../redux/languageReducer";
 import { RootState } from "../redux/store";
@@ -20,7 +19,7 @@ const languages = [
   {
     code: "en",
     label: "English",
-    flag: USAFlag,
+    flag: UKFlag,
   },
   {
     code: "ru",
