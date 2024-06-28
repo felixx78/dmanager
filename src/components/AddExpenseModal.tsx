@@ -15,15 +15,18 @@ import {
 import IconSelect from "./IconSelect";
 import { useState } from "react";
 import ColorSelect from "./ColorSelect";
-import Expense from "../types/expense";
+import { useDispatch } from "react-redux";
+import { expensesActions } from "../redux/expensesReducer";
+import { v4 as u4 } from "uuid";
 
 type Props = {
   isOpen: boolean;
   onClose: () => void;
-  onAdd: (expense: Expense) => void;
 };
 
-function AddExpenseModal({ isOpen, onClose, onAdd }: Props) {
+function AddExpenseModal({ isOpen, onClose }: Props) {
+  const dispatch = useDispatch();
+
   const [icon, setIcon] = useState("");
   const [color, setColor] = useState("gray.500");
   const [title, setTitle] = useState("");
@@ -59,14 +62,16 @@ function AddExpenseModal({ isOpen, onClose, onAdd }: Props) {
     }
 
     setIsTitleInvalid(false);
-    onAdd({
-      //@ts-ignore
-      icon,
-      label: title,
-      bgColor: color,
-      id: title,
-      total: 0,
-    });
+    dispatch(
+      expensesActions.add({
+        id: title + "-" + u4(),
+        icon,
+        label: title,
+        bgColor: color,
+        total: 0,
+        fields: [{ label: "", amount: null }],
+      })
+    );
     setTitle("");
     onClose();
   };

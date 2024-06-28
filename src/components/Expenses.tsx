@@ -1,12 +1,12 @@
 import { Box, Flex, Input, Stack, Text } from "@chakra-ui/react";
-import { useState } from "react";
 import { useIntl } from "react-intl";
 import Expense from "../types/expense";
 import * as Icons from "@phosphor-icons/react";
+import { useDispatch } from "react-redux";
+import { expensesActions } from "../redux/expensesReducer";
 
 type Props = Expense & {
   amount: number;
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
 };
 
 type Field = {
@@ -14,15 +14,17 @@ type Field = {
   amount: number | null;
 };
 
-function Expenses({ icon, label, bgColor, amount, id, setExpenses }: Props) {
+function Expenses({ id, icon, label, bgColor, fields, total, amount }: Props) {
+  const dispatch = useDispatch();
   const intl = useIntl();
-
-  const [fields, setFields] = useState<Field[]>([{ label: "", amount: null }]);
 
   const handleFieldOnChange = (index: number, key: keyof Field) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!fields) return;
+
       const fieldCopy = [...fields];
-      const currentField = fieldCopy[index];
+      const currentField = Object.assign({}, fieldCopy[index]);
+      fieldCopy[index] = currentField;
       const newValue = e.target.value;
 
       if (key === "amount") {
@@ -32,23 +34,19 @@ function Expenses({ icon, label, bgColor, amount, id, setExpenses }: Props) {
       }
 
       const filteredCopy = fieldCopy.filter((i) => i.label || i.amount);
+
+      const newTotal = filteredCopy.reduce(
+        (acc, cur) => acc + (cur.amount || 0),
+        0
+      );
+      dispatch(expensesActions.updateTotal({ id, total: newTotal }));
+
       filteredCopy.push({ label: "", amount: null });
 
-      setExpenses((prev: Expense[]) => {
-        const copy = [...prev];
-        const index = copy.findIndex((i) => i.id === id);
-        copy[index].total = filteredCopy.reduce(
-          (acc, cur) => acc + (cur.amount || 0),
-          0
-        );
-        return copy;
-      });
-
-      setFields(filteredCopy);
+      dispatch(expensesActions.updateFields({ id, fields: filteredCopy }));
     };
   };
 
-  const total = fields.reduce((acc, cur) => acc + (cur.amount || 0), 0);
   const percent = ((total / amount) * 100).toFixed(0);
 
   return (
@@ -113,7 +111,7 @@ function Expenses({ icon, label, bgColor, amount, id, setExpenses }: Props) {
               placeholder={intl.formatMessage({ id: "amount" })}
             />
             <Text fontWeight={500} w="90px" isTruncated>
-              {(((field.amount || 0) / amount) * 100).toFixed(0)}%
+              {(((field.amount || 0) / total) * 100).toFixed(0)}%
             </Text>
           </Flex>
         ))}
