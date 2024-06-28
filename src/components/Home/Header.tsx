@@ -4,7 +4,7 @@ import { useIntl } from "react-intl";
 
 type Props = {
   amount?: number;
-  setAmount: React.Dispatch<React.SetStateAction<number | undefined>>;
+  setAmount: (v: number) => void;
 };
 
 type FormInputs = {
