@@ -45,7 +45,7 @@ function IconSelect({ icon, setIcon }: Props) {
     <Popover isOpen={isOpen} onClose={() => setIsOpen(false)}>
       <PopoverTrigger>
         <Button color="gray.600" onClick={() => setIsOpen(!isOpen)}>
-          {icon && icons[icon].render({ width: "20px", height: "20px" })}
+          {icon && icons[icon].render({ width: "25px", height: "25px" })}
         </Button>
       </PopoverTrigger>
 
