@@ -6,9 +6,8 @@ import messages_ru from "../locales/ru.json";
 import { IntlProvider } from "react-intl";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import Messages from "../locales/type";
 
-const messages: Messages = {
+const messages = {
   en: messages_en,
   ru: messages_ru,
 };
@@ -17,6 +16,7 @@ function RootLayout() {
   const language = useSelector((state: RootState) => state.language);
 
   return (
+    //@ts-ignore
     <IntlProvider locale={language} messages={messages[language]}>
       <Box bgColor="gray.900" minH="100svh" color="gray.200" m={0} p={0}>
         <Header />
