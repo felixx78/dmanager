@@ -14,6 +14,7 @@ import RussianFlag from "../assets/flags/russian.png";
 import { useDispatch, useSelector } from "react-redux";
 import { languageActions } from "../redux/languageReducer";
 import { RootState } from "../redux/store";
+import { useState } from "react";
 
 const languages = [
   {
@@ -32,6 +33,8 @@ function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [currencySign, setCurrencySign] = useState("$");
+
   const languageCode = useSelector((state: RootState) => state.language);
   const language = languages.find((i) => i.code === languageCode)!;
 
@@ -41,14 +44,17 @@ function Header() {
   return (
     <Flex justifyContent="space-between" px="30px" py="10px">
       <Flex
-        onClick={() => navigate("/")}
+        onClick={() => setCurrencySign(currencySign === "$" ? "€" : "$")}
         as="button"
         boxSize="border-box"
         px="10px"
         py="5px"
       >
-        <Text color="green.300" fontSize="lg">
-          $
+        <Text
+          color={currencySign === "$" ? "green.300" : "orange.400"}
+          fontSize="lg"
+        >
+          {currencySign}
         </Text>
         <Text fontSize="lg">manager</Text>
       </Flex>
