@@ -27,7 +27,7 @@ type Props = {
 function AddExpenseModal({ isOpen, onClose }: Props) {
   const dispatch = useDispatch();
 
-  const [icon, setIcon] = useState("");
+  const [icon, setIcon] = useState("Plant");
   const [color, setColor] = useState("gray.500");
   const [title, setTitle] = useState("");
 
