@@ -2,13 +2,10 @@ import { Box, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { useIntl } from "react-intl";
 import Expense from "../types/expense";
+import * as Icons from "@phosphor-icons/react";
 
-type Props = {
-  icon: React.ReactNode;
-  label: string;
-  bgColor: string;
+type Props = Expense & {
   amount: number;
-  id: string;
   setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
 };
 
@@ -72,7 +69,8 @@ function Expenses({ icon, label, bgColor, amount, id, setExpenses }: Props) {
             py="5px"
             color={bgColor}
           >
-            {icon}
+            {/*@ts-ignore*/}
+            {Icons[icon].render({ width: "25px", height: "25px" })}
           </Box>
           <Text fontWeight={500} fontSize="medium">
             {label}

@@ -16,7 +16,6 @@ import IconSelect from "./IconSelect";
 import { useState } from "react";
 import ColorSelect from "./ColorSelect";
 import Expense from "../types/expense";
-import * as Icons from "@chakra-ui/icons";
 
 type Props = {
   isOpen: boolean;
@@ -25,7 +24,7 @@ type Props = {
 };
 
 function AddExpenseModal({ isOpen, onClose, onAdd }: Props) {
-  const [icon, setIcon] = useState("MoonIcon");
+  const [icon, setIcon] = useState("");
   const [color, setColor] = useState("gray.500");
   const [title, setTitle] = useState("");
 
@@ -62,7 +61,7 @@ function AddExpenseModal({ isOpen, onClose, onAdd }: Props) {
     setIsTitleInvalid(false);
     onAdd({
       //@ts-ignore
-      icon: Icons[icon].render(),
+      icon,
       label: title,
       bgColor: color,
       id: title,

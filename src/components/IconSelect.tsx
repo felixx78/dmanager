@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Input,
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -8,10 +9,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import * as Icons from "@chakra-ui/icons";
+import * as Icons from "@phosphor-icons/react";
 import camelCaseToNormal from "../utils/camelCaseToNormal";
-
-const filterIcons = ["createIcon", "Icon"];
 
 type Icon = {
   render: (props?: object) => JSX.Element;
@@ -20,7 +19,7 @@ type Icon = {
 const icons = Icons as unknown as {
   [key: string]: Icon;
 };
-const iconKeys = Object.keys(icons).filter((i) => !filterIcons.includes(i));
+const iconKeys = Object.keys(icons);
 
 type Props = {
   icon: string;
@@ -29,10 +28,11 @@ type Props = {
 
 function IconSelect({ icon, setIcon }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     if (!icon) {
-      setIcon("MoonIcon");
+      setIcon(iconKeys[0]);
     }
   }, [icon]);
 
@@ -45,11 +45,20 @@ function IconSelect({ icon, setIcon }: Props) {
     <Popover isOpen={isOpen} onClose={() => setIsOpen(false)}>
       <PopoverTrigger>
         <Button color="gray.600" onClick={() => setIsOpen(!isOpen)}>
-          {icon && icons[icon].render({ w: "20px", h: "20px" })}
+          {icon && icons[icon].render({ width: "20px", height: "20px" })}
         </Button>
       </PopoverTrigger>
 
       <PopoverContent maxH="300px" overflowY="auto">
+        <Box pt="10px" px="10px">
+          <Input
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Search"
+            color="gray.700"
+          />
+        </Box>
+
         <SimpleGrid
           px="10px"
           py="10px"
@@ -58,47 +67,48 @@ function IconSelect({ icon, setIcon }: Props) {
           spacing={2}
           alignContent="center"
         >
-          {iconKeys.map((i) => (
-            <Box
-              key={i}
-              onClick={() => handleIconChange(i)}
-              as="button"
-              cursor="pointer"
-              display="flex"
-              flexDirection="column"
-              justifyContent="flex-start"
-              alignItems="center"
-              height="100px"
-              pt="20px"
-              boxSizing="content-box"
-            >
+          {iconKeys
+            .filter((i) => i.startsWith(searchValue))
+            .slice(0, 50)
+            .map((i) => (
               <Box
-                bgColor="gray.600"
-                borderRadius="100%"
-                w="35px"
-                height="35px"
-                py="5px"
-                color="gray.200"
-                mt="0"
-                mb="10px"
-                mx="auto"
-                textAlign="center"
+                key={i}
+                onClick={() => handleIconChange(i)}
+                as="button"
+                cursor="pointer"
+                display="flex"
+                flexDirection="column"
+                justifyContent="flex-start"
+                alignItems="center"
+                height="100px"
+                pt="20px"
+                boxSizing="content-box"
               >
-                {icons[i].render({
-                  w: "20px",
-                  h: "20px",
-                })}
+                <Box
+                  bgColor="gray.600"
+                  borderRadius="100%"
+                  p="8px"
+                  color="gray.200"
+                  mt="0"
+                  mb="10px"
+                  mx="auto"
+                  textAlign="center"
+                >
+                  {icons[i].render({
+                    width: "20px",
+                    height: "20px",
+                  })}
+                </Box>
+                <Text
+                  fontWeight={500}
+                  fontSize="15px"
+                  wordBreak="break-word"
+                  textAlign="center"
+                >
+                  {camelCaseToNormal(i)}
+                </Text>
               </Box>
-              <Text
-                fontWeight={500}
-                fontSize="15px"
-                wordBreak="break-word"
-                textAlign="center"
-              >
-                {camelCaseToNormal(i)}
-              </Text>
-            </Box>
-          ))}
+            ))}
         </SimpleGrid>
       </PopoverContent>
     </Popover>

@@ -1,5 +1,5 @@
 type Expense = {
-  icon: React.ReactNode;
+  icon: string;
   label: string;
   bgColor: string;
   id: string;
