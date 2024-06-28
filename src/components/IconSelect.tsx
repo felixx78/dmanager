@@ -68,7 +68,9 @@ function IconSelect({ icon, setIcon }: Props) {
           alignContent="center"
         >
           {iconKeys
-            .filter((i) => i.startsWith(searchValue))
+            .filter((i) =>
+              i.toLocaleLowerCase().startsWith(searchValue.toLocaleLowerCase())
+            )
             .slice(0, 50)
             .map((i) => (
               <Box
