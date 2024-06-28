@@ -62,6 +62,7 @@ function Home() {
           <SimpleGrid
             mt="50px"
             mb="20px"
+            mx="auto"
             maxW="80vw"
             minChildWidth="400px"
             spacing="30px"
@@ -77,6 +78,7 @@ function Home() {
               onClick={() => setIsAddOpen(true)}
               aria-label="Add Expense"
               size="sm"
+              color="gray.600"
               icon={<PlusIcon />}
             />
           </Flex>
