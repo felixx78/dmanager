@@ -1,4 +1,5 @@
 import { Button, Flex, Input } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useIntl } from "react-intl";
 
@@ -16,9 +17,14 @@ function HomeHeader({ amount, setAmount }: Props) {
 
   const {
     register,
+    setValue,
     formState: { errors },
     handleSubmit,
   } = useForm<FormInputs>();
+
+  useEffect(() => {
+    if (amount) setValue("amount", amount);
+  }, [amount]);
 
   const handleOnSubmit = ({ amount }: FormInputs) => setAmount(amount);
 
@@ -41,7 +47,7 @@ function HomeHeader({ amount, setAmount }: Props) {
         onWheel={(e: any) => e.target.blur()}
       />
       <Button type="submit" colorScheme="whiteAlpha" px="40px">
-        {intl.formatMessage({ id: "calculate" })}
+        {intl.formatMessage({ id: "save" })}
       </Button>
     </Flex>
   );
