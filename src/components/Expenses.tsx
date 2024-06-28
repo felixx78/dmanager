@@ -111,7 +111,7 @@ function Expenses({ id, icon, label, bgColor, fields, total, amount }: Props) {
               placeholder={intl.formatMessage({ id: "amount" })}
             />
             <Text fontWeight={500} w="90px" isTruncated>
-              {(((field.amount || 0) / total) * 100).toFixed(0)}%
+              {(((field.amount || 0) / total) * 100 || 0).toFixed(0)}%
             </Text>
           </Flex>
         ))}
