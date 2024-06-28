@@ -67,6 +67,7 @@ function AddExpenseModal({ isOpen, onClose, onAdd }: Props) {
       id: title,
       total: 0,
     });
+    setTitle("");
     onClose();
   };
 
