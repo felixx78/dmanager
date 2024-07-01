@@ -60,7 +60,9 @@ function Expenses({ id, icon, title, bgColor, fields, total, amount }: Props) {
 
   return (
     <Box
-      w="400px"
+      w="100%"
+      maxWidth="80vw"
+      minW="10px"
       bgColor={bgColor}
       px="15px"
       pt="20px"
@@ -90,7 +92,7 @@ function Expenses({ id, icon, title, bgColor, fields, total, amount }: Props) {
           textAlign="end"
           fontWeight={500}
           isTruncated
-          w="100px"
+          // w="100px"
         >
           {total} ({percent}%)
         </Text>

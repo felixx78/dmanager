@@ -34,6 +34,7 @@ function HomeHeader({ amount, setAmount }: Props) {
       as="form"
       onSubmit={handleSubmit(handleOnSubmit)}
       gap="20px"
+      px="10px"
       transition="margin .3s ease"
     >
       <Input

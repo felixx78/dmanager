@@ -100,11 +100,10 @@ function Home() {
           </Flex>
 
           <Box
-            maxW="1260px"
             px="20px"
             py="10px"
             borderRadius="10px"
-            width="100vw"
+            width="80vw"
             bgColor="gray.600"
           >
             <Text>
