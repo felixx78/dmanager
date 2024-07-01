@@ -74,7 +74,7 @@ const LanguageMenuItem = ({
     value="en"
     bg="_"
     _hover={{ bg: "gray.600" }}
-    gap="10px"
+    gap="15px"
     onClick={onClick}
   >
     <img width={40} height="auto" src={image} />
