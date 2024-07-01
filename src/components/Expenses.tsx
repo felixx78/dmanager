@@ -1,18 +1,9 @@
-import {
-  Box,
-  Button,
-  Flex,
-  IconButton,
-  Input,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Input, Stack, Text } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 import Expense from "../types/expense";
 import * as Icons from "@phosphor-icons/react";
 import { useDispatch } from "react-redux";
 import { expensesActions } from "../redux/expensesReducer";
-import { CloseIcon, DeleteIcon, SmallCloseIcon } from "@chakra-ui/icons";
 
 type Props = Expense & {
   amount: number;
