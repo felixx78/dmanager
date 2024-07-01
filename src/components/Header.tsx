@@ -8,13 +8,12 @@ import {
   MenuList,
   Text,
 } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
 import UKFlag from "../assets/flags/uk.svg";
 import RussianFlag from "../assets/flags/russian.png";
 import { useDispatch, useSelector } from "react-redux";
 import { languageActions } from "../redux/languageReducer";
 import { RootState } from "../redux/store";
-import { useState } from "react";
+import Logo from "./Logo";
 
 const languages = [
   {
@@ -30,10 +29,7 @@ const languages = [
 ];
 
 function Header() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const [currencySign, setCurrencySign] = useState("$");
 
   const languageCode = useSelector((state: RootState) => state.language);
   const language = languages.find((i) => i.code === languageCode)!;
@@ -43,21 +39,7 @@ function Header() {
 
   return (
     <Flex justifyContent="space-between" px="30px" py="10px">
-      <Flex
-        onClick={() => setCurrencySign(currencySign === "$" ? "€" : "$")}
-        as="button"
-        boxSize="border-box"
-        px="10px"
-        py="5px"
-      >
-        <Text
-          color={currencySign === "$" ? "green.300" : "orange.400"}
-          fontSize="lg"
-        >
-          {currencySign}
-        </Text>
-        <Text fontSize="lg">manager</Text>
-      </Flex>
+      <Logo />
 
       <Menu>
         <MenuButton fontWeight={400} colorScheme="_" as={Button}>
