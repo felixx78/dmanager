@@ -22,6 +22,7 @@ function Home() {
   const dispatch = useDispatch();
 
   const [startAmount, setStartAmount] = useState<number>();
+  const language = useSelector((state: RootState) => state.language);
   const expenses = useSelector((state: RootState) => state.expenses);
 
   const storedAmount = JSON.parse(localStorage.getItem("amount") || "null");
@@ -38,6 +39,19 @@ function Home() {
     window.addEventListener("beforeunload", onBeforeUnLoad);
     return () => window.removeEventListener("beforeunload", onBeforeUnLoad);
   }, []);
+
+  useEffect(() => {
+    expenses.forEach((i) => {
+      if (!(i.id in intl.messages)) return;
+
+      dispatch(
+        expensesActions.updateTitle({
+          id: i.id,
+          title: intl.formatMessage({ id: i.id }),
+        })
+      );
+    });
+  }, [language]);
 
   const [isAddOpen, setIsAddOpen] = useState(false);
 

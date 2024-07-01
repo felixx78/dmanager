@@ -62,6 +62,10 @@ const expensesSlice = createSlice({
     save(state) {
       localStorage.setItem("expenses", JSON.stringify(state));
     },
+    updateTitle(state, action: PayloadAction<{ id: string; title: string }>) {
+      const find = state.find((i) => i.id === action.payload.id)!;
+      find.title = action.payload.title;
+    },
   },
 });
 
