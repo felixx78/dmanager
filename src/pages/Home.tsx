@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 import HomeHeader from "../components/Home/Header";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Expenses from "../components/Expenses";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
@@ -63,16 +63,14 @@ function Home() {
     localStorage.setItem("amount", JSON.stringify(v));
   };
 
-  const isAnimationDisabled = useMemo(() => !!storedAmount, []);
-
   return (
     <Container pt="20px" maxW="8xl" centerContent>
       <HomeHeader amount={startAmount} setAmount={handleSetStartAmount} />
 
       {startAmount && (
         <motion.div
-          initial={{ opacity: isAnimationDisabled ? 1 : 0 }}
-          animate={!isAnimationDisabled ? { opacity: 1 } : {}}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
           <SimpleGrid
