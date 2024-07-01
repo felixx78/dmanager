@@ -46,7 +46,7 @@ const expensesSlice = createSlice({
       state.push(action.payload);
     },
     delete(state, action: PayloadAction<string>) {
-      state = state.filter((i) => i.id !== action.payload);
+      return state.filter((i) => i.id !== action.payload);
     },
     updateFields(
       state,

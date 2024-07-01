@@ -1,9 +1,18 @@
-import { Box, Flex, Input, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  IconButton,
+  Input,
+  Stack,
+  Text,
+} from "@chakra-ui/react";
 import { useIntl } from "react-intl";
 import Expense from "../types/expense";
 import * as Icons from "@phosphor-icons/react";
 import { useDispatch } from "react-redux";
 import { expensesActions } from "../redux/expensesReducer";
+import { CloseIcon, DeleteIcon, SmallCloseIcon } from "@chakra-ui/icons";
 
 type Props = Expense & {
   amount: number;
@@ -57,6 +66,7 @@ function Expenses({ id, icon, title, bgColor, fields, total, amount }: Props) {
       pt="20px"
       pb="30px"
       borderRadius="10px"
+      position="relative"
     >
       <Flex justifyContent="space-between" mb="25px" gap="10px">
         <Flex alignItems="center" gap="15px">
@@ -85,6 +95,23 @@ function Expenses({ id, icon, title, bgColor, fields, total, amount }: Props) {
           {total} ({percent}%)
         </Text>
       </Flex>
+
+      <Button
+        variant="unstyled"
+        borderRadius="100%"
+        position="absolute"
+        top="-10px"
+        right="-10px"
+        color="gray.600"
+        bgColor="#fff"
+        px="5px"
+        height="30px"
+        minW="0"
+        minH="0"
+        onClick={() => dispatch(expensesActions.delete(id))}
+      >
+        <Icons.X width="20px" height="20px" />
+      </Button>
 
       <Stack spacing="10px">
         {fields.map((field, index) => (
