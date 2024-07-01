@@ -14,7 +14,7 @@ type Field = {
   amount: number | null;
 };
 
-function Expenses({ id, icon, label, bgColor, fields, total, amount }: Props) {
+function Expenses({ id, icon, title, bgColor, fields, total, amount }: Props) {
   const dispatch = useDispatch();
   const intl = useIntl();
 
@@ -71,7 +71,7 @@ function Expenses({ id, icon, label, bgColor, fields, total, amount }: Props) {
             {Icons[icon].render({ width: "25px", height: "25px" })}
           </Box>
           <Text fontWeight={500} fontSize="medium">
-            {label}
+            {title}
           </Text>
         </Flex>
 

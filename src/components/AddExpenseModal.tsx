@@ -66,7 +66,7 @@ function AddExpenseModal({ isOpen, onClose }: Props) {
       expensesActions.add({
         id: title + "-" + u4(),
         icon,
-        label: title,
+        title,
         bgColor: color,
         total: 0,
         fields: [{ label: "", amount: null }],

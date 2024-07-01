@@ -4,7 +4,7 @@ import Expense from "../types/expense";
 
 const rent = {
   icon: "House",
-  label: messages_en["rent&utils"],
+  title: messages_en["rent&utils"],
   bgColor: "green.500",
   id: "rent&utils",
   total: 0,
@@ -13,7 +13,7 @@ const rent = {
 
 const food = {
   icon: "Pizza",
-  label: messages_en.food,
+  title: messages_en.food,
   bgColor: "yellow.500",
   id: "food",
   total: 0,
@@ -22,7 +22,7 @@ const food = {
 
 const entertainment = {
   icon: "DiscoBall",
-  label: messages_en.entertainment,
+  title: messages_en.entertainment,
   bgColor: "red.500",
   id: "entertainment",
   total: 0,

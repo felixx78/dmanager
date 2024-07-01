@@ -1,6 +1,6 @@
 type Expense = {
   icon: string;
-  label: string;
+  title: string;
   bgColor: string;
   id: string;
   total: number;
