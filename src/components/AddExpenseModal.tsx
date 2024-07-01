@@ -79,7 +79,12 @@ function AddExpenseModal({ isOpen, onClose }: Props) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent bgColor="gray.700" color="gray.200">
+      <ModalContent
+        width="400px"
+        maxW="90vw"
+        bgColor="gray.700"
+        color="gray.200"
+      >
         <ModalHeader>Add Expense</ModalHeader>
         <ModalCloseButton />
 
