@@ -92,7 +92,6 @@ function Expenses({ id, icon, title, bgColor, fields, total, amount }: Props) {
           textAlign="end"
           fontWeight={500}
           isTruncated
-          // w="100px"
         >
           {total} ({percent}%)
         </Text>
