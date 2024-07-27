@@ -50,7 +50,7 @@ function IconSelect({ icon, setIcon }: Props) {
       </PopoverTrigger>
 
       <PopoverContent maxH="300px" overflowY="auto">
-        <Box pt="10px" px="10px">
+        <Box pt="10px" px="10px" mb="10px">
           <Input
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
@@ -69,7 +69,7 @@ function IconSelect({ icon, setIcon }: Props) {
         >
           {iconKeys
             .filter((i) =>
-              i.toLocaleLowerCase().startsWith(searchValue.toLocaleLowerCase())
+              i.toLocaleLowerCase().startsWith(searchValue.toLocaleLowerCase()),
             )
             .slice(0, 50)
             .map((i) => (
