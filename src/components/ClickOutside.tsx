@@ -12,15 +12,14 @@ function ClickOutside({ ignoreClick, onClick, children }: Props) {
   useEffect(() => {
     const handleOnClick = (e: MouseEvent) => {
       if (ignoreClick) return;
-      console.log(e.target);
       if (ref.current && !ref.current.contains(e.target as Node)) onClick();
     };
 
-    document.addEventListener("click", handleOnClick);
-    return () => document.removeEventListener("click", handleOnClick);
+    document.addEventListener("mousedown", handleOnClick);
+    return () => document.removeEventListener("mousedown", handleOnClick);
   }, [ignoreClick, onClick, ref]);
 
-  return <div>{children}</div>;
+  return <div ref={ref}>{children}</div>;
 }
 
 export default ClickOutside;
