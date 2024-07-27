@@ -10,7 +10,6 @@ import { useIntl } from "react-intl";
 import HomeHeader from "../components/Home/Header";
 import { useEffect, useState } from "react";
 import Expenses from "../components/Expenses";
-import { PlusIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import AddExpenseModal from "../components/AddExpenseModal";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,7 +48,7 @@ function Home() {
         expensesActions.updateTitle({
           id: i.id,
           title: intl.formatMessage({ id: i.id }),
-        }),
+        })
       );
     });
   }, [language]);
