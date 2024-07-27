@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import * as Icons from "@phosphor-icons/react";
 import camelCaseToNormal from "../utils/camelCaseToNormal";
+import ClickOutside from "./ClickOutside";
 
 type Icon = {
   render: (props?: object) => JSX.Element;
@@ -49,70 +50,74 @@ function IconSelect({ icon, setIcon }: Props) {
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent maxH="300px" overflowY="auto">
-        <Box pt="10px" px="10px" mb="10px">
-          <Input
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            placeholder="Search"
-            color="gray.700"
-          />
-        </Box>
+      <ClickOutside onClick={() => setIsOpen(false)} ignoreClick={!isOpen}>
+        <PopoverContent maxH="300px" overflowY="auto">
+          <Box pt="10px" px="10px" mb="10px">
+            <Input
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Search"
+              color="gray.700"
+            />
+          </Box>
 
-        <SimpleGrid
-          px="10px"
-          py="10px"
-          color="gray.700"
-          columns={2}
-          spacing={2}
-          alignContent="center"
-        >
-          {iconKeys
-            .filter((i) =>
-              i.toLocaleLowerCase().startsWith(searchValue.toLocaleLowerCase()),
-            )
-            .slice(0, 50)
-            .map((i) => (
-              <Box
-                key={i}
-                onClick={() => handleIconChange(i)}
-                as="button"
-                cursor="pointer"
-                display="flex"
-                flexDirection="column"
-                justifyContent="flex-start"
-                alignItems="center"
-                height="100px"
-                pt="20px"
-                boxSizing="content-box"
-              >
+          <SimpleGrid
+            px="10px"
+            py="10px"
+            color="gray.700"
+            columns={2}
+            spacing={2}
+            alignContent="center"
+          >
+            {iconKeys
+              .filter((i) =>
+                i
+                  .toLocaleLowerCase()
+                  .startsWith(searchValue.toLocaleLowerCase()),
+              )
+              .slice(0, 50)
+              .map((i) => (
                 <Box
-                  bgColor="gray.600"
-                  borderRadius="100%"
-                  p="8px"
-                  color="gray.200"
-                  mt="0"
-                  mb="10px"
-                  mx="auto"
-                  textAlign="center"
+                  key={i}
+                  onClick={() => handleIconChange(i)}
+                  as="button"
+                  cursor="pointer"
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="flex-start"
+                  alignItems="center"
+                  height="100px"
+                  pt="20px"
+                  boxSizing="content-box"
                 >
-                  {icons[i].render({
-                    width: "20px",
-                    height: "20px",
-                  })}
+                  <Box
+                    bgColor="gray.600"
+                    borderRadius="100%"
+                    p="8px"
+                    color="gray.200"
+                    mt="0"
+                    mb="10px"
+                    mx="auto"
+                    textAlign="center"
+                  >
+                    {icons[i].render({
+                      width: "20px",
+                      height: "20px",
+                    })}
+                  </Box>
+                  <Text
+                    fontWeight={500}
+                    fontSize="15px"
+                    wordBreak="break-word"
+                    textAlign="center"
+                  >
+                    {camelCaseToNormal(i)}
+                  </Text>
                 </Box>
-                <Text
-                  fontWeight={500}
-                  fontSize="15px"
-                  wordBreak="break-word"
-                  textAlign="center"
-                >
-                  {camelCaseToNormal(i)}
-                </Text>
-              </Box>
-            ))}
-        </SimpleGrid>
-      </PopoverContent>
+              ))}
+          </SimpleGrid>
+        </PopoverContent>
+      </ClickOutside>
     </Popover>
   );
 }
