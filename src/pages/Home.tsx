@@ -16,6 +16,7 @@ import AddExpenseModal from "../components/AddExpenseModal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { expensesActions } from "../redux/expensesReducer";
+import { Plus } from "@phosphor-icons/react/dist/ssr";
 
 function Home() {
   const intl = useIntl();
@@ -48,7 +49,7 @@ function Home() {
         expensesActions.updateTitle({
           id: i.id,
           title: intl.formatMessage({ id: i.id }),
-        })
+        }),
       );
     });
   }, [language]);
@@ -64,7 +65,7 @@ function Home() {
   };
 
   return (
-    <Container pt="20px" maxW="8xl" centerContent>
+    <Container pb="20px" maxW="8xl" centerContent>
       <HomeHeader amount={startAmount} setAmount={handleSetStartAmount} />
 
       {startAmount && (
@@ -93,7 +94,7 @@ function Home() {
               aria-label="Add Expense"
               size="sm"
               color="gray.600"
-              icon={<PlusIcon />}
+              icon={<Plus size="25px" />}
             />
           </Flex>
 
