@@ -8,18 +8,13 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import * as Icons from "@phosphor-icons/react";
+import React, { useEffect, useState } from "react";
+import * as PhosphorIcons from "@phosphor-icons/react";
 import camelCaseToNormal from "../utils/camelCaseToNormal";
 import ClickOutside from "./ClickOutside";
 
-type Icon = {
-  render: (props?: object) => JSX.Element;
-};
+const { IconContext, IconBase, SSR, ...icons } = PhosphorIcons;
 
-const icons = Icons as unknown as {
-  [key: string]: Icon;
-};
 const iconKeys = Object.keys(icons);
 
 type Props = {
@@ -32,9 +27,7 @@ function IconSelect({ icon, setIcon }: Props) {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    if (!icon) {
-      setIcon(iconKeys[0]);
-    }
+    if (!icon) setIcon(iconKeys[0]);
   }, [icon]);
 
   const handleIconChange = (key: string) => {
@@ -42,11 +35,13 @@ function IconSelect({ icon, setIcon }: Props) {
     setIcon(key);
   };
 
+  const SelectedIcon = icons[icon as keyof typeof icons];
+
   return (
     <Popover isOpen={isOpen} onClose={() => setIsOpen(false)}>
       <PopoverTrigger>
         <Button color="gray.600" onClick={() => setIsOpen(!isOpen)}>
-          {icon && icons[icon].render({ width: "25px", height: "25px" })}
+          <SelectedIcon width="25px" height="25px" />
         </Button>
       </PopoverTrigger>
 
@@ -74,46 +69,15 @@ function IconSelect({ icon, setIcon }: Props) {
                 .filter((i) =>
                   i
                     .toLocaleLowerCase()
-                    .startsWith(searchValue.toLocaleLowerCase()),
+                    .startsWith(searchValue.toLocaleLowerCase())
                 )
                 .slice(0, 50)
                 .map((i) => (
-                  <Box
+                  <IconButton
                     key={i}
+                    icon={i}
                     onClick={() => handleIconChange(i)}
-                    as="button"
-                    cursor="pointer"
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                    height="110px"
-                    pt="20px"
-                  >
-                    <Box
-                      bgColor="gray.600"
-                      borderRadius="100%"
-                      p="8px"
-                      color="gray.200"
-                      mt="0"
-                      mb="10px"
-                      mx="auto"
-                      textAlign="center"
-                    >
-                      {icons[i].render({
-                        width: "20px",
-                        height: "20px",
-                      })}
-                    </Box>
-                    <Text
-                      fontWeight={500}
-                      fontSize="15px"
-                      wordBreak="break-word"
-                      textAlign="center"
-                    >
-                      {camelCaseToNormal(i)}
-                    </Text>
-                  </Box>
+                  />
                 ))}
             </SimpleGrid>
           </Box>
@@ -122,4 +86,49 @@ function IconSelect({ icon, setIcon }: Props) {
     </Popover>
   );
 }
+
+type IconButtonProps = {
+  onClick?: () => void;
+  icon: string;
+};
+
+const IconButton = ({ icon, onClick }: IconButtonProps) => {
+  const IconComponent = icons[icon as keyof typeof icons];
+
+  return (
+    <Box
+      onClick={onClick}
+      as="button"
+      cursor="pointer"
+      display="flex"
+      flexDirection="column"
+      justifyContent="flex-start"
+      alignItems="center"
+      height="110px"
+      pt="20px"
+    >
+      <Box
+        bgColor="gray.600"
+        borderRadius="100%"
+        p="8px"
+        color="gray.200"
+        mt="0"
+        mb="10px"
+        mx="auto"
+        textAlign="center"
+      >
+        <IconComponent width="25px" height="25px" />
+      </Box>
+      <Text
+        fontWeight={500}
+        fontSize="15px"
+        wordBreak="break-word"
+        textAlign="center"
+      >
+        {camelCaseToNormal(icon)}
+      </Text>
+    </Box>
+  );
+};
+
 export default IconSelect;
