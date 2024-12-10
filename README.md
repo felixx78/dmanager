@@ -19,7 +19,7 @@ Website for cost calculating
 Clone the project
 
 ```bash
-  git clone https://github.com/finn78/dmanager
+  git clone https://github.com/felixx78/dmanager
 ```
 
 Go to the project directory
