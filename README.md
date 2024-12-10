@@ -1,7 +1,7 @@
 
 # $Manager
 
-Website for cost calculating
+React app to calculate monthly spending
 
 # Live
 
